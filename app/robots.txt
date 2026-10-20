@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /coswheel-ebike/api/
+
+Sitemap: https://www.primegearlab.com/coswheel-ebike/sitemap.xml

@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; max-width: 100%; }
+body { background: #020617; color: #e2e8f0; max-width: 100%; overflow-x: clip; }
+[id] { scroll-margin-top: 88px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+a:focus-visible, button:focus-visible, iframe:focus-visible {
+  outline: 2px solid #FFA10B; outline-offset: 2px;
+}
