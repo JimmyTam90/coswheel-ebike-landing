@@ -1,6 +1,6 @@
 const ITEMS = [
   ['1-Year Warranty', 'Merchant warranty policy'],
-  ['Free US Shipping', 'US warehouse, 5–8 business days'],
+  ['Free US Shipping', 'US & EU warehouses, about 5–10 days'],
   ['30-Day Returns', 'Per merchant return policy'],
   ['Pay in Installments', 'Klarna & Afterpay in the US'],
 ];

@@ -11,7 +11,8 @@ export default function ProductCard({ p }) {
       </div>
       <div className="flex flex-1 flex-col bg-slate-50 p-5">
         <h3 className="text-lg font-extrabold leading-snug text-slate-900">{p.name}</h3>
-        <div className="mt-3 flex-1 space-y-3 text-sm text-slate-700">
+        <div className="mt-3 flex flex-1 flex-col text-sm text-slate-700">
+          <div className="flex-1 space-y-3">
           <p className="flex flex-wrap items-baseline gap-2">
             <span className="text-2xl font-extrabold text-slate-900">{money(p.price)}</span>
             <s className="text-slate-500">{money(p.regularPrice)}</s>
@@ -26,7 +27,8 @@ export default function ProductCard({ p }) {
           </p>
           <p><span className="font-bold text-slate-900">The problem: </span>{p.pain}</p>
           <p><span className="font-bold text-slate-900">Why this fits: </span>{p.solution}</p>
-          <dl className="grid grid-cols-2 gap-x-3 gap-y-2 rounded-xl bg-white p-3 text-xs">
+          </div>
+          <dl className="mt-4 grid min-h-[104px] grid-cols-2 content-start gap-x-3 gap-y-2 rounded-xl bg-white p-3 text-xs">
             {[['Motor', p.specs.motor], ['Battery', p.specs.battery], ['Top speed', p.specs.topSpeed], ['Range', p.specs.range]].map(([k, v]) => (
               <div key={k}><dt className="font-semibold text-slate-500">{k}</dt><dd className="font-bold text-slate-900">{v}</dd></div>
             ))}

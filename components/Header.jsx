@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import AffiliateCTA from './AffiliateCTA';
 import { withBase } from '@/lib/config';
@@ -12,11 +12,24 @@ const NAV = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    const onResize = () => { if (window.innerWidth >= 768) setOpen(false); };
+    window.addEventListener('keydown', onKey);
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      window.removeEventListener('resize', onResize);
+    };
+  }, [open]);
+
   return (
-    <div className="sticky top-0 z-50 w-full overflow-x-clip bg-slate-950">
+    <div className="sticky top-0 z-50 w-full bg-slate-950">
       <header className="relative w-full border-b border-slate-800 bg-slate-950">
         <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" aria-label="PrimeGearLab home" className="flex shrink-0 items-center">
+          <Link href="/" aria-label="PrimeGearLab home" className="flex shrink-0 items-center" onClick={() => setOpen(false)}>
             <img src={withBase('/logo.png')} alt="PrimeGearLab Independent Lab" width={1161} height={883} className="h-14 w-auto" />
           </Link>
 
@@ -46,9 +59,13 @@ export default function Header() {
             </svg>
           </button>
         </div>
+      </header>
 
-        {open && (
-          <div id="mobile-menu" className="absolute left-0 right-0 top-full z-50 w-full border-b border-slate-800 bg-slate-950 shadow-2xl md:hidden">
+      {/* Drawer is viewport-fixed (not clipped by any ancestor overflow) and sits right under the 72px header. */}
+      {open && (
+        <>
+          <div className="fixed inset-x-0 bottom-0 top-[72px] z-40 bg-black/60 md:hidden" onClick={() => setOpen(false)} aria-hidden="true" />
+          <div id="mobile-menu" className="fixed inset-x-0 top-[72px] z-50 max-h-[calc(100vh-72px)] overflow-y-auto border-b border-slate-800 bg-slate-950 shadow-2xl md:hidden">
             <nav aria-label="Mobile" className="flex flex-col gap-1 px-4 py-4">
               <Link href="/" onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-base font-semibold text-slate-200 hover:bg-slate-800">Home</Link>
               {NAV.map((n) => (
@@ -61,8 +78,8 @@ export default function Header() {
               </AffiliateCTA>
             </nav>
           </div>
-        )}
-      </header>
+        </>
+      )}
     </div>
   );
 }

@@ -3,6 +3,8 @@ import Script from 'next/script';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCTA from '@/components/StickyCTA';
+import ExitPopup from '@/components/ExitPopup';
+import SocialWidget from '@/components/SocialWidget';
 import { GA4_ID, OG_IMAGE, SITE, withBase } from '@/lib/config';
 
 export const metadata = {
@@ -39,12 +41,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="font-sans antialiased">
-        <div className="w-full overflow-x-clip bg-slate-950 pb-20 md:pb-0">
+        <div className="w-full bg-slate-950 pb-20 md:pb-0">
           <Header />
           <main>{children}</main>
           <Footer />
         </div>
         <StickyCTA />
+        <SocialWidget />
+        <ExitPopup />
         {GA4_ID && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="afterInteractive" />

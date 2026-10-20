@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { NEWSLETTER, SITE, SOCIAL, withBase } from '@/lib/config';
+import SocialIcons from './SocialIcons';
+import { NEWSLETTER, SITE, withBase } from '@/lib/config';
 
 const LEGAL = [
   { href: '/privacy', label: 'Privacy Policy' },
@@ -8,28 +9,30 @@ const LEGAL = [
   { href: '/contact', label: 'Contact' },
 ];
 
-const iconCls = 'h-5 w-5';
-const SocialLink = ({ href, label, children }) => (
-  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-     className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-700 text-slate-300 transition hover:border-amber-400 hover:text-amber-400">
-    {children}
-  </a>
-);
-
 export default function Footer() {
   return (
     <footer className="w-full border-t border-slate-800 bg-slate-950">
       {/* Newsletter / VIP lead capture (Brevo hosted form) */}
       <section id="vip" aria-labelledby="vip-heading" className="border-b border-slate-800 bg-slate-900/60">
-        <div className="mx-auto max-w-3xl px-4 py-12 text-center sm:px-6">
-          <h2 id="vip-heading" className="text-2xl font-extrabold text-white sm:text-3xl">{NEWSLETTER.heading}</h2>
-          <p className="mx-auto mt-3 max-w-xl text-slate-300">{NEWSLETTER.subheading}</p>
-          <div className="mx-auto mt-6 max-w-[540px] overflow-hidden rounded-2xl bg-white">
+        <div className="mx-auto grid max-w-5xl items-center gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 md:gap-12">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-amber-400">VIP list</p>
+            <h2 id="vip-heading" className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">{NEWSLETTER.heading}</h2>
+            <p className="mt-3 text-slate-300">{NEWSLETTER.subheading}</p>
+            <ul className="mt-5 space-y-2 text-sm text-slate-300">
+              {['Seasonal price-drop alerts', 'Free accessory guides', 'Speed-tuning tips'].map((t) => (
+                <li key={t} className="flex items-center gap-2"><span aria-hidden="true" className="text-amber-400">✓</span>{t}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-slate-700 bg-slate-900 p-2 shadow-xl shadow-black/30">
             <iframe
               src={NEWSLETTER.formUrl}
               title="COSWHEEL VIP email signup"
               loading="lazy"
-              className="block h-[460px] w-full border-0"
+              scrolling="no"
+              style={{ overflow: 'hidden' }}
+              className="block h-[620px] w-full rounded-xl border-0 bg-white sm:h-[560px] md:h-[600px] lg:h-[560px]"
             />
           </div>
         </div>
@@ -62,16 +65,8 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex items-center gap-3 md:justify-end">
-            <SocialLink href={SOCIAL.facebook} label="PrimeGearLab on Facebook">
-              <svg className={iconCls} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
-            </SocialLink>
-            <SocialLink href={SOCIAL.x} label="PrimeGearLab on X">
-              <svg className={iconCls} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
-            </SocialLink>
-            <SocialLink href={SOCIAL.instagram} label="PrimeGearLab on Instagram">
-              <svg className={iconCls} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>
-            </SocialLink>
+          <div className="md:justify-self-end">
+            <SocialIcons />
           </div>
         </div>
       </div>

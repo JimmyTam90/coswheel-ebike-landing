@@ -26,3 +26,9 @@ Next.js 14 (App Router, JavaScript) + Tailwind 3. Served under `/coswheel-ebike`
   { "source": "/coswheel-ebike/:path*", "destination": "https://<spoke>.vercel.app/coswheel-ebike/:path*" }
 ] }
 ```
+
+## v2 notes
+- `lib/products.js`: GT20 / GT20 PRO set to AVAILABLE_OBSERVED (owner-confirmed in stock). Set back to `UNAVAILABLE_OBSERVED` to show "Check Restock".
+- `all-ebikes` outbound key powers the promo popup (`components/ExitPopup.jsx`).
+- 4 social icons: `components/SocialIcons.jsx` (footer) + `SocialWidget.jsx` (sticky, md and up).
+- Brevo iframe heights are the `h-[...]` classes in `components/Footer.jsx`; tune them if the form clips or leaves a gap.

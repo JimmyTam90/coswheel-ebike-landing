@@ -6,7 +6,7 @@ const ROWS = [
   ['Top speed', (p) => p.specs.topSpeed],
   ['Max range', (p) => p.specs.range],
   ['Merchant price', (p) => money(p.price)],
-  ['Stock (Oct 20, 2026)', (p) => AVAILABILITY_LABEL[p.availability]],
+  ['Availability', (p) => AVAILABILITY_LABEL[p.availability]],
 ];
 
 export default function ComparisonTable() {
