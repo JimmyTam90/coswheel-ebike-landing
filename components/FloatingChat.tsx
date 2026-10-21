@@ -1,13 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 
 export default function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  return (
-    <div className="fixed bottom-20 right-4 md:bottom-8 md:right-8 z-[9999]">
+  // Đảm bảo chỉ render sau khi trang đã load xong trên trình duyệt
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const chatContent = (
+    <div className="fixed bottom-20 right-4 md:bottom-8 md:right-8 z-[999999] pointer-events-auto">
       {/* Popup Menu Trợ Giúp */}
       {isOpen && (
         <div className="absolute bottom-16 right-0 w-72 sm:w-80 rounded-2xl border border-amber-400/40 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all">
@@ -46,7 +55,7 @@ export default function FloatingChat() {
         </div>
       )}
 
-      {/* Nút Floating Chat - Ép kích thước chuẩn không bị móp/tràn */}
+      {/* Nút Chat tròn hình bong bóng tin nhắn */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         style={{ width: '56px', height: '56px' }}
@@ -63,4 +72,7 @@ export default function FloatingChat() {
       </button>
     </div>
   );
+
+  // Ép render trực tiếp vào body tag để không bị che bởi bất kỳ thẻ div nào
+  return createPortal(chatContent, document.body);
 }
