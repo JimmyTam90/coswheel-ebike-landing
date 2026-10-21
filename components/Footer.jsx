@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import SocialIcons from './SocialIcons';
-import { NEWSLETTER, SITE, withBase } from '@/lib/config';
+import VipForm from './VipForm';
+import { SITE, withBase } from '@/lib/config';
 
 const LEGAL = [
   { href: '/privacy', label: 'Privacy Policy' },
@@ -12,29 +13,10 @@ const LEGAL = [
 export default function Footer() {
   return (
     <footer className="w-full border-t border-slate-800 bg-slate-950">
-      {/* Newsletter / VIP lead capture (Brevo hosted form) */}
-      <section id="vip" aria-labelledby="vip-heading" className="border-b border-slate-800 bg-slate-900/60">
-        <div className="mx-auto grid max-w-5xl items-center gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 md:gap-12">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-amber-400">VIP list</p>
-            <h2 id="vip-heading" className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">{NEWSLETTER.heading}</h2>
-            <p className="mt-3 text-slate-300">{NEWSLETTER.subheading}</p>
-            <ul className="mt-5 space-y-2 text-sm text-slate-300">
-              {['Seasonal price-drop alerts', 'Free accessory guides', 'Speed-tuning tips'].map((t) => (
-                <li key={t} className="flex items-center gap-2"><span aria-hidden="true" className="text-amber-400">✓</span>{t}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-2xl border border-slate-700 bg-slate-900 p-2 shadow-xl shadow-black/30">
-            <iframe
-              src={NEWSLETTER.formUrl}
-              title="COSWHEEL VIP email signup"
-              loading="lazy"
-              scrolling="no"
-              style={{ overflow: 'hidden' }}
-              className="block h-[620px] w-full rounded-xl border-0 bg-white sm:h-[560px] md:h-[600px] lg:h-[560px]"
-            />
-          </div>
+      {/* VIP lead capture: native dark-mode form posting to Brevo */}
+      <section id="vip" aria-labelledby="vip-heading" className="border-b border-slate-800 bg-gradient-to-b from-slate-900/70 to-slate-950">
+        <div className="mx-auto max-w-xl px-4 py-12 sm:px-6 sm:py-14">
+          <VipForm />
         </div>
       </section>
 

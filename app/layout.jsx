@@ -4,7 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCTA from '@/components/StickyCTA';
 import ExitPopup from '@/components/ExitPopup';
-import SocialWidget from '@/components/SocialWidget';
 import { GA4_ID, OG_IMAGE, SITE, withBase } from '@/lib/config';
 
 export const metadata = {
@@ -47,7 +46,6 @@ export default function RootLayout({ children }) {
           <Footer />
         </div>
         <StickyCTA />
-        <SocialWidget />
         <ExitPopup />
         {GA4_ID && (
           <>

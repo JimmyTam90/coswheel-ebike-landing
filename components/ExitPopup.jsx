@@ -2,9 +2,20 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import AffiliateCTA from './AffiliateCTA';
 
-const KEY = 'coswheel_offer_dismissed';
+const KEY = 'coswheel_offer_dismissed_at';
+const DELAY_MS = 25000;                  // show after 25 seconds on the page
+const SCROLL_DEPTH = 0.5;                // or after 50% of the page has been scrolled
+const SUPPRESS_MS = 24 * 60 * 60 * 1000; // stay hidden for 24h after the visitor closes it
 
-// Shows once per session: exit intent (desktop), rapid scroll-up (mobile) or >50% of the catalog scrolled.
+const wasDismissed = () => {
+  try {
+    const t = Number(window.localStorage.getItem(KEY));
+    return Boolean(t) && Date.now() - t < SUPPRESS_MS;
+  } catch (e) { return false; }
+};
+
+// Triggers (first one wins): 25s timer, 50% scroll depth, or desktop exit intent (after 5s on page).
+// Closing it with X stores a timestamp in localStorage so it does not come back.
 export default function ExitPopup() {
   const [show, setShow] = useState(false);
   const done = useRef(false);
@@ -17,31 +28,26 @@ export default function ExitPopup() {
 
   const dismiss = useCallback(() => {
     setShow(false);
-    try { sessionStorage.setItem(KEY, '1'); } catch (e) { /* storage may be unavailable */ }
+    try { window.localStorage.setItem(KEY, String(Date.now())); } catch (e) { /* storage may be unavailable */ }
   }, []);
 
   useEffect(() => {
-    try { if (sessionStorage.getItem(KEY)) { done.current = true; return undefined; } } catch (e) { /* ignore */ }
+    if (wasDismissed()) { done.current = true; return undefined; }
     const t0 = Date.now();
-    let lastY = window.scrollY;
+    const timer = window.setTimeout(trigger, DELAY_MS);
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0 && window.scrollY / max >= SCROLL_DEPTH) trigger();
+    };
     const onOut = (e) => {
       if (!e.relatedTarget && e.clientY <= 0 && Date.now() - t0 > 5000) trigger();
     };
-    const onScroll = () => {
-      const y = window.scrollY;
-      const grid = document.getElementById('top-deals');
-      if (grid) {
-        const r = grid.getBoundingClientRect();
-        if (y + window.innerHeight >= r.top + y + r.height * 0.5) { trigger(); return; }
-      }
-      if (lastY - y > 80 && y > 600) trigger();
-      lastY = y;
-    };
-    document.addEventListener('mouseout', onOut);
     window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('mouseout', onOut);
     return () => {
-      document.removeEventListener('mouseout', onOut);
+      window.clearTimeout(timer);
       window.removeEventListener('scroll', onScroll);
+      document.removeEventListener('mouseout', onOut);
     };
   }, [trigger]);
 

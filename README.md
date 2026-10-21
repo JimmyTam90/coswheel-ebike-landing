@@ -32,3 +32,9 @@ Next.js 14 (App Router, JavaScript) + Tailwind 3. Served under `/coswheel-ebike`
 - `all-ebikes` outbound key powers the promo popup (`components/ExitPopup.jsx`).
 - 4 social icons: `components/SocialIcons.jsx` (footer) + `SocialWidget.jsx` (sticky, md and up).
 - Brevo iframe heights are the `h-[...]` classes in `components/Footer.jsx`; tune them if the form clips or leaves a gap.
+
+## v3 notes
+- VIP form is native (`components/VipForm.jsx`) and POSTs to the Brevo endpoint in `lib/config.js` (no-cors; the browser cannot read Brevo's reply).
+  After deploying, submit a real test email and confirm it appears in Brevo > Contacts.
+- Floating social widget removed; the 4 icons live in the footer only (`components/SocialIcons.jsx`).
+- Promo popup (`components/ExitPopup.jsx`): 25 s timer, 50% scroll depth or desktop exit intent; closing stores a 24 h flag in localStorage.
