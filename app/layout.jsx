@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCTA from '@/components/StickyCTA';
 import ExitPopup from '@/components/ExitPopup';
+import FloatingChat from '@/components/FloatingChat';
 import { GA4_ID, OG_IMAGE, SITE, withBase } from '@/lib/config';
 
 export const metadata = {
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
         </div>
         <StickyCTA />
         <ExitPopup />
+        <FloatingChat />
         {GA4_ID && (
           <>
             <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="afterInteractive" />
