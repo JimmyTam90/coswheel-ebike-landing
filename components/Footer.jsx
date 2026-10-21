@@ -15,24 +15,24 @@ export default function Footer() {
     <footer className="w-full border-t border-slate-800 bg-slate-950">
       {/* VIP lead capture: native dark-mode form posting to Brevo */}
       <section id="vip" aria-labelledby="vip-heading" className="border-b border-slate-800 bg-gradient-to-b from-slate-900/70 to-slate-950">
-        <div className="mx-auto max-w-xl px-4 py-12 sm:px-6 sm:py-14">
+        <div className="mx-auto max-w-xl px-4 py-10 sm:px-6 sm:py-12">
           <VipForm />
         </div>
       </section>
 
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-[auto_minmax(0,1fr)] md:gap-x-12">
-          <Link href="/" aria-label="PrimeGearLab home" className="md:row-span-3">
-            <img src={withBase('/logo.png')} alt="PrimeGearLab Independent Lab" width={1161} height={883} className="h-24 w-auto md:h-28" />
+        <div className="grid grid-cols-1 justify-items-center gap-6 text-center md:grid-cols-[auto_minmax(0,1fr)] md:justify-items-stretch md:gap-x-12 md:gap-y-8 md:text-left">
+          <Link href="/" aria-label="PrimeGearLab home" className="md:row-span-3 md:justify-self-start">
+            <img src={withBase('/logo.png')} alt="PrimeGearLab Independent Lab" width={1161} height={883} className="h-16 w-auto md:h-28" />
           </Link>
 
-          <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-3 md:flex-nowrap md:justify-end md:whitespace-nowrap">
+          <nav aria-label="Legal" className="grid w-full max-w-xs grid-cols-2 gap-x-6 gap-y-3 text-center md:flex md:w-auto md:max-w-none md:flex-nowrap md:justify-end md:gap-x-5 md:whitespace-nowrap md:text-left">
             {LEGAL.map((l) => (
               <Link key={l.href} href={l.href} className="text-sm font-semibold text-slate-300 hover:text-amber-400">{l.label}</Link>
             ))}
           </nav>
 
-          <div className="max-w-4xl space-y-3 text-left text-sm leading-relaxed text-slate-400">
+          <div className="max-w-4xl space-y-3 text-center text-sm leading-relaxed text-slate-400 md:text-left">
             <p>
               PrimeGearLab is an independent affiliate publisher and is not COSWHEEL. This website contains affiliate links.
               We may earn a commission when you purchase through eligible links, at no additional cost to you.
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
 
           <div className="md:justify-self-end">
-            <SocialIcons />
+            <SocialIcons className="justify-center" />
           </div>
         </div>
       </div>

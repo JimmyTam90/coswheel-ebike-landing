@@ -12,7 +12,7 @@ export default function ProductGrid() {
           Four models, four very different personalities. Prices and availability were checked on {SITE.checkedOn}.
           Confirm final pricing at the merchant’s checkout.
         </p>
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2 md:gap-y-0 xl:grid-cols-4">
           {PRODUCTS.map((p) => <ProductCard key={p.id} p={p} />)}
         </div>
         <p className="mt-6 text-sm text-slate-400">

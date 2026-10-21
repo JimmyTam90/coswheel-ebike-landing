@@ -38,3 +38,8 @@ Next.js 14 (App Router, JavaScript) + Tailwind 3. Served under `/coswheel-ebike`
   After deploying, submit a real test email and confirm it appears in Brevo > Contacts.
 - Floating social widget removed; the 4 icons live in the footer only (`components/SocialIcons.jsx`).
 - Promo popup (`components/ExitPopup.jsx`): 25 s timer, 50% scroll depth or desktop exit intent; closing stores a 24 h flag in localStorage.
+
+## v4 notes
+- Product cards use CSS subgrid on md+ (`md:grid-rows-subgrid`, Tailwind 3.4): rows (title, price, text, specs, CTA) line up across columns.
+- Hero rating badge is computed from the manifest (`REVIEW_SUMMARY` in `lib/products.js`): weighted merchant-site ratings, currently 4.6/5 from 122 reviews.
+- Footer is centered on mobile (2-column legal links, smaller logo) and keeps the right-aligned desktop layout.

@@ -1,5 +1,5 @@
 import AffiliateCTA from './AffiliateCTA';
-import { getProduct, money, saving } from '@/lib/products';
+import { REVIEW_SUMMARY, getProduct, money, saving } from '@/lib/products';
 
 export default function Hero() {
   const p = getProduct('coswheel-r19');
@@ -16,6 +16,20 @@ export default function Hero() {
             looked too small. This guide matches the COSWHEEL lineup to the ride you actually want, so you can stop
             scrolling and start going.
           </p>
+          <div className="mt-6 flex max-w-xl flex-col gap-2 rounded-2xl border border-slate-700 bg-slate-900/70 px-4 py-3 sm:flex-row sm:items-center sm:gap-4">
+            <div className="flex items-center gap-2">
+              <span className="relative inline-block text-lg leading-none tracking-tight" role="img" aria-label={`${REVIEW_SUMMARY.avg} out of 5 stars`}>
+                <span className="text-slate-700" aria-hidden="true">★★★★★</span>
+                <span className="absolute inset-y-0 left-0 overflow-hidden whitespace-nowrap text-amber-400" style={{ width: `${(REVIEW_SUMMARY.avg / 5) * 100}%` }} aria-hidden="true">★★★★★</span>
+              </span>
+              <span className="text-sm font-extrabold text-white">{REVIEW_SUMMARY.avg}/5</span>
+            </div>
+            <p className="text-xs leading-snug text-slate-300 sm:text-sm">
+              Average of {REVIEW_SUMMARY.count} customer reviews on the official COSWHEEL store
+              <span className="hidden text-slate-600 sm:inline"> | </span>
+              <span className="block text-slate-400 sm:inline">Independent guide · COSWHEEL affiliate partner</span>
+            </p>
+          </div>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <AffiliateCTA dest="coswheel-r19" placement="hero-primary" className="bg-brand text-white hover:bg-brand-dark">
               Shop the R19 Dirt Ebike

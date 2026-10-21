@@ -41,7 +41,7 @@ export default function VipForm() {
   }
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-slate-900/60 p-6 shadow-2xl shadow-black/40 ring-1 ring-amber-400/10 backdrop-blur-md sm:p-8">
+    <div className="rounded-3xl border border-white/10 bg-slate-900/60 p-5 shadow-2xl shadow-black/40 ring-1 ring-amber-400/10 backdrop-blur-md sm:p-6">
       <p className="mx-auto w-fit rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-1.5 text-xs font-bold text-amber-300">
         {NEWSLETTER.badge}
       </p>
@@ -52,9 +52,9 @@ export default function VipForm() {
         {NEWSLETTER.subheading}
       </p>
 
-      <div aria-live="polite" className="mt-6 min-h-[112px]">
+      <div aria-live="polite" className="mt-5">
         {status === 'success' ? (
-          <div className="flex min-h-[112px] flex-col items-center justify-center rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-5 text-center">
+          <div className="flex flex-col items-center justify-center rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-5 text-center">
             <p className="text-lg font-extrabold text-emerald-300">You’re on the VIP list! ✓</p>
             <p className="mt-1 text-sm text-slate-300">Check your inbox (and spam folder) for a confirmation email.</p>
           </div>
@@ -93,7 +93,7 @@ export default function VipForm() {
         )}
       </div>
 
-      <p className="mt-2 text-center text-xs text-slate-400">{NEWSLETTER.privacy}</p>
+      <p className="mt-3 text-center text-xs text-slate-400">{NEWSLETTER.privacy}</p>
       <p className="mt-1 text-center text-xs text-slate-500">
         By subscribing you agree to our <a className="underline hover:text-amber-400" href={withBase('/privacy')}>Privacy Policy</a>.
       </p>
