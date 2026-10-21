@@ -43,7 +43,10 @@ export default function Footer() {
             </p>
             <p>
               Contact: <a className="text-slate-200 underline hover:text-amber-400" href={`mailto:${SITE.email}`}>{SITE.email}</a>
-              {' '}· © {new Date().getFullYear()} PrimeGearLab. COSWHEEL and product names belong to their respective owners.
+              {/* Thêm xuống dòng ngắt riêng trên Mobile, duy trì chấm ngang '·' trên Desktop */}
+              <br className="block sm:hidden" />
+              <span className="hidden sm:inline"> · </span>
+              © {new Date().getFullYear()} PrimeGearLab. COSWHEEL and product names belong to their respective owners.
             </p>
           </div>
 
