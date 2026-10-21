@@ -7,26 +7,16 @@ export default function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
-      {/* 1. KHUNG POPUP CHAT (Định vị cố định góc dưới bên phải, nằm phía trên nút chat) */}
+    <div className="fixed bottom-6 right-6 z-[99999] pointer-events-auto">
+      {/* Popup Menu Trợ Giúp - Cân đối, chuẩn màu sắc giống hệt mẫu Pazoma Racing */}
       {isOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            bottom: '90px',
-            right: '24px',
-            zIndex: 2147483647,
-            width: '320px',
-            maxWidth: 'calc(100vw - 32px)',
-          }}
-          className="rounded-2xl border border-amber-400/40 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all"
-        >
+        <div className="absolute bottom-full right-0 mb-3 w-80 sm:w-96 rounded-2xl border border-amber-400/30 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div className="flex items-center gap-2">
               <span className="flex h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse"></span>
               <span className="text-sm font-bold text-amber-400">COSWHEEL Support Hub</span>
             </div>
-            <button
+            <button 
               onClick={() => setIsOpen(false)}
               className="text-gray-400 hover:text-white text-sm font-bold px-2 py-1 cursor-pointer"
               aria-label="Close"
@@ -41,9 +31,9 @@ export default function FloatingChat() {
             <Link
               href="/coswheel-ebike/contact"
               onClick={() => setIsOpen(false)}
-              className="w-full rounded-lg bg-amber-400 py-2.5 text-center text-xs font-extrabold uppercase tracking-wide text-black transition hover:bg-amber-300 flex items-center justify-center gap-1.5"
+              className="w-full rounded-lg bg-amber-400 py-2.5 text-center text-xs font-extrabold uppercase tracking-wide text-black transition hover:bg-amber-300"
             >
-              📩 Contact Support Desk
+              📩 Contact Support &amp; Help Desk
             </Link>
             <a
               href="#vip"
@@ -56,28 +46,20 @@ export default function FloatingChat() {
         </div>
       )}
 
-      {/* 2. NÚT CHAT TRÒN CỐ ĐỊNH (Luôn luôn nằm ở góc dưới bên phải) */}
+      {/* Nút Chat Tròn - Đồng bộ màu viền vàng hổ phách & icon chuẩn */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        style={{
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
-          width: '56px',
-          height: '56px',
-          zIndex: 2147483647,
-        }}
-        className="flex shrink-0 items-center justify-center rounded-full bg-[#111] border-2 border-amber-400 text-amber-400 shadow-2xl transition-all duration-200 hover:scale-105 hover:bg-black focus:outline-none cursor-pointer"
+        className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#222] border border-amber-400/40 text-amber-400 shadow-xl transition-all duration-200 hover:scale-105 hover:bg-black hover:border-amber-400 focus:outline-none cursor-pointer"
         aria-label="Open support menu"
       >
         {isOpen ? (
-          <span className="text-xl font-bold text-amber-400">✕</span>
+          <span className="text-base font-bold text-amber-400">✕</span>
         ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7 text-amber-400">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-6 h-6 sm:w-7 sm:h-7">
             <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
           </svg>
         )}
       </button>
-    </>
+    </div>
   );
 }
