@@ -41,11 +41,11 @@ export default function Footer() {
               Prices, specifications and stock were checked on {SITE.checkedOn} and can change on the merchant site at any time.
               Always confirm details on coswheelebike.com before you buy.
             </p>
+            {/* TÁCH BIỆT THÀNH 2 DÒNG RIÊNG TRÊN CẢ WEB VÀ MOBILE */}
             <p>
               Contact: <a className="text-slate-200 underline hover:text-amber-400" href={`mailto:${SITE.email}`}>{SITE.email}</a>
-              {/* Thêm xuống dòng ngắt riêng trên Mobile, duy trì chấm ngang '·' trên Desktop */}
-              <br className="block sm:hidden" />
-              <span className="hidden sm:inline"> · </span>
+            </p>
+            <p>
               © {new Date().getFullYear()} PrimeGearLab. COSWHEEL and product names belong to their respective owners.
             </p>
           </div>
