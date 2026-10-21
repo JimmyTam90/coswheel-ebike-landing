@@ -14,11 +14,11 @@ export default function FloatingChat() {
         right: '24px', 
         zIndex: 2147483647 
       }}
-      className="pointer-events-auto flex flex-col items-end"
+      className="pointer-events-auto"
     >
-      {/* Popup Menu Trợ Giúp - Căn lề lùi vào trong để không bị tràn màn hình */}
+      {/* Popup Menu Trợ Giúp - Đặt absolute và đẩy lên phía trên nút chat */}
       {isOpen && (
-        <div className="mb-3 w-72 sm:w-80 rounded-2xl border border-amber-400/40 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all">
+        <div className="absolute bottom-full right-0 mb-3 w-72 sm:w-80 rounded-2xl border border-amber-400/40 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div className="flex items-center gap-2">
               <span className="flex h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse"></span>
@@ -54,7 +54,7 @@ export default function FloatingChat() {
         </div>
       )}
 
-      {/* Nút Floating Chat */}
+      {/* Nút Floating Chat Cố Định */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         style={{ width: '56px', height: '56px' }}
