@@ -10,13 +10,13 @@ export default function FloatingChat() {
     <div 
       style={{ 
         position: 'fixed', 
-        bottom: '24px', 
-        right: '24px', 
+        bottom: '28px', 
+        right: '28px', 
         zIndex: 2147483647 
       }}
       className="pointer-events-auto"
     >
-      {/* Popup Menu Trợ Giúp - Đặt absolute và đẩy lên phía trên nút chat */}
+      {/* Popup Menu Trợ Giúp - Đặt mọc lên trên và lùi lề an toàn */}
       {isOpen && (
         <div className="absolute bottom-full right-0 mb-3 w-72 sm:w-80 rounded-2xl border border-amber-400/40 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
@@ -54,7 +54,7 @@ export default function FloatingChat() {
         </div>
       )}
 
-      {/* Nút Floating Chat Cố Định */}
+      {/* Nút Floating Chat Tròn Hoàn Hảo */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         style={{ width: '56px', height: '56px' }}
