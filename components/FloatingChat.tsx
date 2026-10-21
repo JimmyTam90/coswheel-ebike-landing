@@ -7,18 +7,10 @@ export default function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div 
-      style={{ 
-        position: 'fixed', 
-        bottom: '28px', 
-        right: '28px', 
-        zIndex: 2147483647 
-      }}
-      className="pointer-events-auto"
-    >
-      {/* Popup Menu Trợ Giúp - Đặt mọc lên trên và lùi lề an toàn */}
+    <div className="fixed bottom-6 right-6 z-[99999] pointer-events-auto">
+      {/* Popup Menu Trợ Giúp: Dùng bottom-full để mọc hướng lên trên, tránh bị cắt cụt ở đáy màn hình */}
       {isOpen && (
-        <div className="absolute bottom-full right-0 mb-3 w-72 sm:w-80 rounded-2xl border border-amber-400/40 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all">
+        <div className="absolute bottom-full right-0 mb-3 w-[280px] sm:w-80 rounded-2xl border border-amber-400/40 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div className="flex items-center gap-2">
               <span className="flex h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse"></span>
@@ -54,11 +46,10 @@ export default function FloatingChat() {
         </div>
       )}
 
-      {/* Nút Floating Chat Tròn Hoàn Hảo */}
+      {/* Nút Chat tròn hình bong bóng tin nhắn */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        style={{ width: '56px', height: '56px' }}
-        className="flex shrink-0 items-center justify-center rounded-full bg-[#111] border-2 border-amber-400 text-amber-400 shadow-2xl transition-all duration-200 hover:scale-105 hover:bg-black focus:outline-none cursor-pointer"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#111] border-2 border-amber-400 text-amber-400 shadow-2xl transition-all duration-200 hover:scale-105 hover:bg-black focus:outline-none cursor-pointer"
         aria-label="Open support menu"
       >
         {isOpen ? (
