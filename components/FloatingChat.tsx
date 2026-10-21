@@ -7,19 +7,10 @@ export default function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div 
-      style={{
-        position: 'fixed',
-        bottom: '24px',
-        right: '24px',
-        left: 'auto',
-        zIndex: 2147483647,
-      }}
-      className="pointer-events-auto flex flex-col items-end"
-    >
-      {/* Popup Menu Trợ Giúp - Mọc hướng lên trên, góc phải chuẩn 100% */}
+    <div className="fixed bottom-6 right-6 z-[99999] pointer-events-auto flex flex-col items-end">
+      {/* Popup Menu Trợ Giúp - Luôn bung hướng lên trên và căn sát lề phải */}
       {isOpen && (
-        <div className="mb-3 w-80 sm:w-96 rounded-2xl border border-amber-400/30 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all">
+        <div className="absolute bottom-full right-0 mb-3 w-80 sm:w-96 rounded-2xl border border-amber-400/30 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div className="flex items-center gap-2">
               <span className="flex h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse"></span>
@@ -40,7 +31,7 @@ export default function FloatingChat() {
             <Link
               href="/coswheel-ebike/contact"
               onClick={() => setIsOpen(false)}
-              className="w-full rounded-lg bg-amber-400 py-2.5 text-center text-xs font-extrabold uppercase tracking-wide text-black transition hover:bg-amber-300 flex items-center justify-center gap-1.5"
+              className="w-full rounded-lg bg-amber-400 py-2.5 text-center text-xs font-extrabold uppercase tracking-wide text-black transition hover:bg-amber-300"
             >
               📩 Contact Support &amp; Help Desk
             </Link>
@@ -55,7 +46,7 @@ export default function FloatingChat() {
         </div>
       )}
 
-      {/* Nút Chat Tròn */}
+      {/* Nút Chat Tròn Cố Định */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#222] border border-amber-400/40 text-amber-400 shadow-xl transition-all duration-200 hover:scale-105 hover:bg-black hover:border-amber-400 focus:outline-none cursor-pointer"
