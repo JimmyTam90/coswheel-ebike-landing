@@ -8,12 +8,17 @@ export default function FloatingChat() {
 
   return (
     <div 
-      style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 2147483647 }}
-      className="pointer-events-auto"
+      style={{ 
+        position: 'fixed', 
+        bottom: '24px', 
+        right: '24px', 
+        zIndex: 2147483647 
+      }}
+      className="pointer-events-auto flex flex-col items-end"
     >
-      {/* Popup Menu Trợ Giúp */}
+      {/* Popup Menu Trợ Giúp - Căn lề lùi vào trong để không bị tràn màn hình */}
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-80 rounded-2xl border border-amber-400/30 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all sm:w-96">
+        <div className="mb-3 w-72 sm:w-80 rounded-2xl border border-amber-400/40 bg-black/95 p-4 text-white shadow-2xl backdrop-blur-md transition-all">
           <div className="flex items-center justify-between border-b border-white/10 pb-3">
             <div className="flex items-center gap-2">
               <span className="flex h-2.5 w-2.5 rounded-full bg-green-500 animate-pulse"></span>
@@ -21,7 +26,7 @@ export default function FloatingChat() {
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              className="text-gray-400 hover:text-white text-sm font-bold px-2 py-1"
+              className="text-gray-400 hover:text-white text-sm font-bold px-2 py-1 cursor-pointer"
               aria-label="Close"
             >
               ✕
@@ -52,8 +57,8 @@ export default function FloatingChat() {
       {/* Nút Floating Chat */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        style={{ width: '60px', height: '60px' }}
-        className="flex items-center justify-center rounded-full bg-[#111] border-2 border-amber-400 text-amber-400 shadow-2xl transition-all duration-200 hover:scale-105 hover:bg-black focus:outline-none"
+        style={{ width: '56px', height: '56px' }}
+        className="flex shrink-0 items-center justify-center rounded-full bg-[#111] border-2 border-amber-400 text-amber-400 shadow-2xl transition-all duration-200 hover:scale-105 hover:bg-black focus:outline-none cursor-pointer"
         aria-label="Open support menu"
       >
         {isOpen ? (
