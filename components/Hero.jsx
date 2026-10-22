@@ -5,11 +5,11 @@ export default function Hero() {
   const p = getProduct('coswheel-r19');
   return (
     <section className="w-full overflow-hidden bg-gradient-to-b from-slate-900 to-slate-950 pt-6 sm:pt-10">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-8 lg:pb-16">
+      <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 pb-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:px-8 lg:pb-16">
         
-        {/* CỘT 1 (BÊN TRÁI DESKTOP): DÙNG FLEX-COL-REVERSE TRÊN MOBILE ĐỂ ĐẨY ẢNH/NỘI DUNG CHUẨN */}
+        {/* CỘT BÊN TRÁI (HOẶC LUỒNG MOBILE TỪ TRÊN XUỐNG) */}
         <div className="flex flex-col">
-          {/* Tiêu đề & Mô tả */}
+          {/* 1. TIÊU ĐỀ & MÔ TẢ (LUÔN NẰM ĐẦU TIÊN TRÊN CẢ MOBILE VÀ DESKTOP) */}
           <div>
             <p className="text-sm font-bold uppercase tracking-widest text-amber-400">
               Independent COSWHEEL e-bike guide · 2026
@@ -24,9 +24,36 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* Khối chứa Đánh giá + CTA: Trên Mobile sẽ tự động nằm DƯỚI ảnh sản phẩm nhờ lg:block */}
+          {/* 2. HÌNH ÁNH SẢN PHẨM & GIÁ (HIỂN THỊ TRÊN MOBILE - NẰM NGAY SAU TIÊU ĐỀ & TRƯỚC CTA) */}
+          <div className="mt-6 w-full lg:hidden">
+            <div className="overflow-hidden rounded-2xl border border-slate-700 bg-white">
+              <div className="flex aspect-[4/3] items-center justify-center bg-white p-4">
+                <img 
+                  src={p.image} 
+                  alt={p.imageAlt} 
+                  width={900} 
+                  height={675} 
+                  className="h-full w-full object-contain" 
+                  fetchPriority="high" 
+                />
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 bg-slate-50 px-5 py-4 text-slate-900">
+                <span className="text-base font-extrabold">
+                  {p.short} · {money(p.price)} <s className="text-sm font-medium text-slate-500">{money(p.regularPrice)}</s>
+                </span>
+                <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">
+                  Save {money(saving(p))} at merchant
+                </span>
+              </div>
+            </div>
+            <p className="mt-2 text-center text-xs text-slate-500">
+              Price checked October 20, 2026 on coswheelebike.com. Subject to change.
+            </p>
+          </div>
+
+          {/* 3. ĐÁNH GIÁ & CÁC NÚT CTA (HIỂN THỊ DƯỚI ẢNH KHI TRÊN MOBILE) */}
           <div className="mt-6 flex flex-col">
-            {/* Đánh giá */}
+            {/* Khối Đánh giá */}
             <div className="flex max-w-xl flex-col gap-2 rounded-2xl border border-slate-700 bg-slate-900/70 px-4 py-3 sm:flex-row sm:items-center sm:gap-4">
               <div className="flex items-center gap-2">
                 <span className="relative inline-block text-lg leading-none tracking-tight" role="img" aria-label={`${REVIEW_SUMMARY.avg} out of 5 stars`}>
@@ -42,7 +69,7 @@ export default function Hero() {
               </p>
             </div>
 
-            {/* Khối nút CTA */}
+            {/* Các Nút Bấm CTA */}
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <AffiliateCTA dest="coswheel-r19" placement="hero-primary" className="bg-brand text-white hover:bg-brand-dark">
                 Shop the R19 Dirt Ebike
@@ -59,9 +86,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* CỘT 2 (BÊN PHẢI DESKTOP): HÌNH ÁNH SẢN PHẨM & GIÁ */}
-        {/* Trên Mobile sử dụng order-first để hình ảnh đưa lên trước CTA */}
-        <div className="order-first mx-auto w-full max-w-xl lg:order-last">
+        {/* CỘT BÊN PHẢI DESKTOP: HÌNH ÁNH SẢN PHẨM & GIÁ (ẨN TRÊN MOBILE, CHỈ HIỂN THỊ TRÊN DESKTOP) */}
+        <div className="hidden mx-auto w-full max-w-xl lg:block">
           <div className="overflow-hidden rounded-2xl border border-slate-700 bg-white">
             <div className="flex aspect-[4/3] items-center justify-center bg-white p-4">
               <img src={p.image} alt={p.imageAlt} width={900} height={675} className="h-full w-full object-contain" fetchPriority="high" />
